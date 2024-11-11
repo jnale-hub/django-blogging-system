@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Comment{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold font-serif mb-4 text-center">Add Comment</h1>
+<form method="post" class="space-y-4">
+    {% csrf_token %}
+    <div class="[&>textarea]:w-full [&>textarea]:h-32">
+      {{ form.content }}
+  </div>
+    <button type="submit" class="font-serif text-xl font-semibold ml-auto hover:underline">Submit</button>
+</form>
+{% endblock %}

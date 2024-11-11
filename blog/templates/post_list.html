@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load markdownify %}
+
+{% block title %}Blog Posts{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold font-serif mb-4 text-center">Blog Posts</h1>
+<ul class="space-y-4">
+    {% for post in posts %}
+        <li class="p-4">
+            <a href="{% url 'post_detail' post.pk %}" class="text-2xl font-semibold font-serif hover:underline">{{ post.title }}</a>
+            <p class="text-gray-700">{{ post.published_date|date:"F j, Y" }}</p>
+
+            <div class="prose prose-lg my-4 line-clamp-4">
+              {{ post.content | markdownify }}
+          </div>
+          <p class="text-gray-700 text-right">-{{ post.author.name }}</p>
+        </li>
+
+    {% empty %}
+        <li class="p-4">No posts yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
