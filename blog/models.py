@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Author(models.Model):
     name = models.CharField(max_length=100)
@@ -12,7 +13,7 @@ class Post(models.Model):
     PUBLISHED = 'published'
     STATUS_CHOICES = [
         (DRAFT, 'Draft'),
-        (PUBLISHED, 'Published')
+        (PUBLISHED, 'Published'),
     ]
 
     title = models.CharField(max_length=200)
@@ -30,4 +31,7 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Comment on {self.post.title}"
+        return f'Comment by {self.post.author.name} on {self.post.title}'
+    
+    def get_absolute_url(self):
+        return reverse('post_detail', kwargs={'pk': self.post.pk})
