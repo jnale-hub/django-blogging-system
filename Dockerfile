@@ -8,7 +8,7 @@ ENV PYTHONUNBUFFERED 1
 # Set the working directory
 WORKDIR /app
 
-# Copy the requirements file first for caching
+# Copy the requirements file
 COPY requirements.txt /app/
 
 # Install dependencies
@@ -17,8 +17,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . /app/
 
-# Entry point to ensure migrations and seed are run
-ENTRYPOINT ["/app/entrypoint.sh"]
-
 # Run the Django development server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py migrate && python manage.py seed && python manage.py runserver 0.0.0.0:8000"]
