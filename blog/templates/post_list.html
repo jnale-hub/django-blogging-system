@@ -12,7 +12,7 @@
             <a href="{% url 'post_detail' post.pk %}" class="text-2xl font-semibold font-serif hover:underline">{{ post.title }}</a>
             <p class="text-gray-700">{{ post.published_date|date:"F j, Y" }}</p>
 
-            <div class="prose prose-lg my-4 line-clamp-4">
+            <div class="prose md:prose-lg my-4 line-clamp-4">
               {{ post.content | markdownify }}
           </div>
           <p class="text-gray-700 text-right">-{{ post.author.name }}</p>
