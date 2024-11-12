@@ -9,3 +9,6 @@ m:
 
 test:
 	@pytest
+
+seed:
+	@python manage.py seed
