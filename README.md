@@ -27,3 +27,14 @@ To run the tests, use the following command:
 ```sh
 pytest
 ```
+
+## Docker Deployment
+
+To deploy the application using Docker, follow these steps:
+
+1. Build the Docker image:
+   ```sh
+   docker-compose build
+2. Run the Docker containers:
+   ```sh
+   docker-compose up
